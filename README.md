@@ -26,7 +26,7 @@ With the data included in this repo, we aim to train and deploy a custom machine
 
 The guided walk through below highlights how to provision a new Azure Machine Learning workspace, create necessary compute resources in the AML workspace, upload a training dataset, start an AutoML model training job, deploy the trained model to an endpoint, and then consume that model through a custom Power BI Dashboard.
 
-# Step 1 - Download and Extract GitHub Repository to your Local Machine
+### Step 1 - Download and Extract GitHub Repository to your Local Machine
 
 First, download this repository with the underlying data for training and validation to your local machine. Click on the <i><> Code</i> dropdown link and select 'Download ZIP'.
 
@@ -38,4 +38,4 @@ Once completed you should see a zipped directory named 'AzureML_TaxiFarePredicti
 
 Navigate to the extracted directory and click into the `taxi_data` directory. You should see two files: `testing_data.csv` and `training_data.csv`. These will be used for model training and evaluation later on in the workshop.
 
-![Test and Train Taxi Data](doc_img/02.png?raw=true "Test and Train Taxi Data")
+![Test and Train Taxi Data](doc_img/03.png?raw=true "Test and Train Taxi Data")
