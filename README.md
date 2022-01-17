@@ -1,7 +1,7 @@
 # Azure Machine Learning - NYC Taxi Cab Fare Prediction Workshop
 
 ## Overview
-This workshop showcases how to train, deploy, and consume a custom model using Azure resources. Specifically, this workshop walks through how to load data into [Azure Machine Learning](https://azure.microsoft.com/en-us/services/machine-learning/) from a local CSV, train a custom model using [AutoML](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml), deploy that model to a real-time endpoint, and consume the predictions through a custom Power BI report. 
+This workshop showcases how to train, deploy, and consume a custom model using Azure resources. Specifically, this workshop walks through how to load data into [Azure Machine Learning](https://azure.microsoft.com/en-us/services/machine-learning/) from a local CSV, train a custom model using [AutoML](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml), deploy that model to a real-time endpoint, and consume the predictions through a custom [Power BI](https://powerbi.microsoft.com/en-us/) report. 
 
 After completing this workshop, you will be prepared to train, deploy, and consume custom ML models built on top of your own data without having to write any code whatsoever!
 
