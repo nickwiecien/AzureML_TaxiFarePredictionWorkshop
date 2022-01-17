@@ -81,6 +81,18 @@ On the review and create tab, once the validation has passed click the <i>Create
 
 ![Azure Machine Learning Create Tab](doc_img/10.png?raw=true "Azure Machine Learning Create Tab")
 
+After clicking <i>Create</i> a new Azure Machine Learning deployment will start, a process which may take a few minutes. Once the deployment is complete, click the <i>Go to resource</i> button.
+
+![Azure Machine Learning Go-To Resource](doc_img/11.png?raw=true "Azure Machine Learning Go-To Resource")
+
+From the Azure Machine Learning resource page in the Azure ML portal, click the <i>Launch studio</i> button in the center of the page.
+
+![Azure Machine Learning Launch Studio](doc_img/12.png?raw=true "Azure Machine Learning Launch Studio")
+
+A new browser tab containing the Azure Machine Learning Studio UI should open.
+
+![Azure Machine Learning Studio](doc_img/13.png?raw=true "Azure Machine Learning Studio")
+
 ### Step 3 - Register Taxi Training Data as Azure Machine Learning Dataset
 
 Upload CSV into workspace
