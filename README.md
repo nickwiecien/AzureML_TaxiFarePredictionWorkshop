@@ -235,7 +235,7 @@ Populate the 'Deploy a Model' tab with the information in the table below. Note 
 
 | Field | Value |
 |-------|-------|
-|Name | fare-prediction-deployment |
+|Name | fare-prediction-deployment-YOURINITIALS |
 |Compute type | Azure Container Instance |
 |Enable authentication | <i>Leave unchecked</i> |
 |Use custom deployment assets | TRUE |
@@ -280,9 +280,59 @@ Launch Power BI Desktop from the start menu.
 
 ![Launch Power BI](doc_img/39.png?raw=true "Launch Power BI")
 
+Once Power BI has opened on desktop click the <i>Get data</i> drop down from the top ribbon and select <i>Text/CSV</i>.
 
+![Load Text/CSV](doc_img/40.png?raw=true "Load Text/CSV")
+
+From the file explorer, navigate to the `taxi_data/testing_data.csv` file you downloaded to your local machine earlier in the workshop. Select the file and click <i>Open</i>.
+
+![Load Testing Data](doc_img/41.png?raw=true "Load Testing Data")
+
+A data preview panel will appear with similar data to what was used to train your fare prediction model. Click the <i>Transform Data</i> button. In the next section we will connect to your deployed model and create an interactive report visualization.
+
+![Transform Data](doc_img/42.png?raw=true "Transform Data")
 
 ## Step 8 - Connect Deployed Model into Power BI Report
+
+From the Power Query Editor, click the <i>Azure Machine Learning</i> option and sign into your Azure AD account when prompted.
+
+![Power BI Azure ML](doc_img/43.png?raw=true "Power BI Azure ML")
+
+From the 'Azure Machine Learning Models' dialog, your deployed model should appear with the name `AzureML.fare-prediction-deployment-YOURINITIALS`. Click this option. The fields should be automatically populated with appropriate columns from the testing dataset. Then click <i>OK</i>.
+
+![Azure ML Fare Prediction Model](doc_img/44.png?raw=true "Azure ML Fare Prediction Model")
+
+When prompted choose to ignore the privacy level details. No sensitive information is being used in this workshop.
+
+![Azure ML Privacy](doc_img/45.png?raw=true "Azure ML Privacy")
+
+A new column should appear with predictions from your deployed model. Rename this new column to `PREDICTED_AMOUNT` by modifying the name in the formula bar at the top of the page.
+
+![Predicted Amount Column](doc_img/46.png?raw=true "Predicted Amount Column")
+
+Next, we need to confirm that both the <i>TOTAL_AMOUNT</i> and <i>PREDICTED_AMOUNT</i> columns reflect the appropriate numeric type. Click the 'Transform' tab along the top ribbon, select each column one at a time, and update the data type to <i>Decimal Number</i>. The icon attached to each column should appear as <b>1.2</b>.
+
+![Update Column Types](doc_img/47.png?raw=true "Update Column Types")
+
+To save your changes, navigate back to the 'Home' tab in the report and click `Close & Apply`.
+
+![Close & Apply](doc_img/48.png?raw=true "Close & Apply")
+
+From the report add a new visualization. From the visualization panel, double-click the <i>Scatter Plot</i> option in the center of the panel. This will automatically add a new visualization to your report which you can dynamically resize.
+
+![Add Scatter Plot](doc_img/49.png?raw=true "Add Scatter Plot")
+
+Add data to your visualization. Drag the 'TOTAL_AMOUNT' column under the 'X Axis' field, and the 'PREDICTED_AMOUNT' column under the 'Y Axis'. For both, click the drop-down menu and select <i>Don't summarize</i>.
+
+![Scatter Plot](doc_img/50.png?raw=true "Scatter Plot")
+
+Your plot should appear similar to what is shown here with substantial density along the identity line with some outliers falling well off of it. You can also add fields to the 'Tooltips' section. This will allow you to hover over points and view additional details about the datapoint.
+
+![Tooltips](doc_img/51.png?raw=true "Tooltips")
+
+Congratulations on finishing the workshop! Feel free to continue creating new visualizations in Power BI using predictions sourced from your deployed model. Be sure to delete all created resources at the conclusion of the workshop unless you want to use these as a reference in the future. You can delete resources by navigating to the Azure portal, selecting the Azure ML workspace and clicking delete.
+
+![Delete AML Workspace](doc_img/52.png?raw=true "Delete AML Workspace")
 
 ## Next Steps and References
 
