@@ -213,11 +213,46 @@ Under the '[Optional] Validate and Test' menu, leave the defaults selected and c
 
 Your AutoML training job should start immediately. Now would be a great time to go grab a coffee as this next part will take ~20-30 minutes ☕🕒. 
 
+After your run has completed it should reflect the best performing model under the 'Best model summary'. You can review all trained models under the 'Models' tab.
+
+![AutoML Completion](doc_img/33.png?raw=true "AutoML Completion")
+
 ### Step 6 - Deploy your Trained Model to an Azure Container Instance
 
-Deploy to web service and verify prediction through testing portal once complete
+Now we will deploy your best performing model to a real-time endpoint so that it can be consumed by other applications and services.
+
+<span style="color:red"><b>IMPORTANT!</b> In order to deploy a Power BI-compatible endpoint the following steps are critical in your model deployment</span>
+
+Click the hyper link to your best performing model and navigate to the 'Outputs + logs' tab. Under the `outputs` directory in the file explorer click the ellipsis (...) next to `outputs/conda_env_v_1_0_0.yml` and `outputs/scoring_file_v_1_0_0.py` to download both to your local machine. It is important to download the `scoring_file_v_1_0_0.py` version.
+
+![Download Model Env and Scoring File](doc_img/34.png?raw=true "Download Model Env and Scoring File")
+
+Once you have downloaded these two files, click the <i>Deploy</i> dropdown menu and select 'Deploy to web service'.
+
+![Model Web Service Deployment](doc_img/35.png?raw=true "Model Web Service Deployment")
+
+Populate the 'Deploy a Model' tab with the information in the table below. Note the `scoring_file_v_1_0_0.py` and `conda_env_v_1_0_0.yml` should be sourced from your local machine. After entering all fields, click  <i>Deploy</i>.
+
+| Field | Value |
+|-------|-------|
+|Name | fare-prediction-deployment |
+|Compute type | Azure Container Instance |
+|Enable authentication | <i>Leave unchecked</i> |
+|Use custom deployment assets | TRUE |
+|Entry script file | `scoring_file_v_1_0_0.py` |
+|Conda dependencies file | `conda_env_v_1_0_0.yml` |
+
+![Deploy a Model](doc_img/36.png?raw=true "Deploy a Model")
+
+Your model endpoint deployment should begin automatically and this process can take a few minutes (~10) to complete.
 
 ### Step 7 - Load PBIX Template in Power BI Desktop
+
+If you do not have Power BI Desktop installed, [download the PBI Desktop Installer from the Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=58494) and install on your local machine.
+
+Launch Power BI Desktop from the start menu.
+
+
 
 ### Step 8 - Connect Deployed Model into Power BI Report
 
