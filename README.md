@@ -217,12 +217,11 @@ After your run has completed it should reflect the best performing model under t
 
 ![AutoML Completion](doc_img/33.png?raw=true "AutoML Completion")
 
-### Step 6 - Deploy your Trained Model to an Azure Container Instance
+## Step 6 - Deploy your Trained Model to an Azure Container Instance
 
 Now we will deploy your best performing model to a real-time endpoint so that it can be consumed by other applications and services.
-```diff
-+ <b>IMPORTANT!</b> In order to deploy a Power BI-compatible endpoint the following steps are critical in your model deployment.
-```
+
+<b>IMPORTANT!</b> In order to deploy a Power BI-compatible endpoint the following steps are critical in your model deployment.
 
 Click the hyper link to your best performing model and navigate to the 'Outputs + logs' tab. Under the `outputs` directory in the file explorer click the ellipsis (...) next to `outputs/conda_env_v_1_0_0.yml` and `outputs/scoring_file_v_1_0_0.py` to download both to your local machine. It is important to download the `scoring_file_v_1_0_0.py` version.
 
