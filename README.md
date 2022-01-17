@@ -1,11 +1,13 @@
 # Azure Machine Learning - NYC Taxi Cab Fare Prediction Workshop
 
 ## Overview
-This workshop showcases how to take data from a CSV, train a custom model using AutoML inside of Azure Machine Learning, deploy that model to a real-time endpoint, and consume the predictions through a custom Power BI report. After completing this workshop, you will be prepared to train, deploy, and consume custom ML models built on top of your own data without having to write any code whatsoever!
+This workshop showcases how to train, deploy, and consume a custom model using Azure resources. Specifically, this workshop walks through how to load data into [Azure Machine Learning](https://azure.microsoft.com/en-us/services/machine-learning/) from a local CSV, train a custom model using AutoML, deploy that model to a real-time endpoint, and consume the predictions through a custom Power BI report. 
+
+After completing this workshop, you will be prepared to train, deploy, and consume custom ML models built on top of your own data without having to write any code whatsoever!
 
 ![NYC Taxi Cab Fare Prediction Workshop](doc_img/yellow_taxi.jpg?raw=true "NYC Taxi Cab Fare Prediction Workshop")
 
-In this workshop we will be using taxi data from the open-source NYC Yellow Taxi Cab Dataset. The data located in `taxi_data/training_data.csv` and `taxi_data/testing_data.csv` has been retrieved from the Azure Open Dataset and formatted to include the following fields:
+In this workshop we will be using taxi data from the [open-source NYC Yellow Taxi Cab Dataset](https://docs.microsoft.com/en-us/azure/open-datasets/dataset-taxi-yellow?tabs=azureml-opendatasets). The data located in `taxi_data/training_data.csv` and `taxi_data/testing_data.csv` has been retrieved from the Azure Open Dataset and formatted to include the following fields:
 
 | Column Name | Column Description | 
 |-------------|--------------------|
@@ -20,11 +22,11 @@ In this workshop we will be using taxi data from the open-source NYC Yellow Taxi
 |TRIP_DISTANCE| The total distance of the cab ride in miles |
 |TOTAL_AMOUNT| The total amount paid by the rider (fare + tip). Used as an output in this workshop |
 
-With the data included in this repo, we aim to train and deploy a custom machine learning model which can predict the total amount a rider will pay out for a taxi ride, based on the inputs listed above. We will then integrate this model into a custom Power BI dashboard to make predictions about fares for future cab rides.
+With the data included in this repo, we aim to train and deploy a custom machine learning model which can <b>predict the total amount a rider will pay for a taxi ride</b>, based on the inputs listed above. We will then integrate this model into a custom Power BI dashboard to make predictions about fares for future cab rides.
 
 ## Getting Started
 
-The guided walk through below highlights how to provision a new Azure Machine Learning workspace, create necessary compute resources in the AML workspace, upload a training dataset, start an AutoML model training job, deploy the trained model to an endpoint, and then consume that model through a custom Power BI report.
+The guided walkthrough below highlights how to provision a new Azure Machine Learning workspace, create necessary compute resources in the workspace, upload a training dataset, launch an AutoML model training job, deploy the trained model to an endpoint, and then consume that model through a custom Power BI report.
 
 - [Step 1 - Download and Extract GitHub Repository to your Local Machine](#step-1---download-and-extract-github-repository-to-your-local-machine)
  - [Step 2 - Provision an Azure Machine Learning Workspace](#step-2---provision-an-azure-machine-learning-workspace)
@@ -52,7 +54,7 @@ Navigate to the extracted directory and click into the `taxi_data` directory. Yo
 
 ## Step 2 - Provision an Azure Machine Learning Workspace
  
-Sign in to the (Azure Portal)[https://ms.portal.azure.com] and navigate to your target resource group for the workshop exercise. From the home page you can type <i>Resource groups</i> into the top search bar and select the associated option under the services menu.
+Sign in to the [Azure Portal](https://ms.portal.azure.com) and navigate to your target resource group for the workshop exercise. From the home page you can type <i>Resource groups</i> into the top search bar and select the associated option under the services menu.
 
 ![Resource groups](doc_img/04.png?raw=true "Resource groups")
 
@@ -135,7 +137,7 @@ Under the 'Schema' tab all of the columns in the dataset will be auto-type detec
 
 ![Schema](doc_img/19.png?raw=true "Schema")
 
-Finally, from the 'Confirm details' tab, click <i>Create</i>. Your dataset is now registered (read, saved and versioned) and can be consumed from the AML workspace and used to support model training.
+Finally, from the 'Confirm details' tab, click <i>Create</i>. Your dataset is now registered (saved and versioned) and can be consumed from the AML workspace and used to support model training.
 
 ![Confirm Details](doc_img/20.png?raw=true "Confirm Details")
 
@@ -149,7 +151,7 @@ From the Compute panel select the <i>Compute clusters</i> tab, and then click th
 
 ![Compute Clusters](doc_img/22.png?raw=true "Compute Clusters")
 
-From the 'Virtual Machine' tab, leave the default values selected. The `Standard_DS3_v2` sku VM will work well for the forthcoming training operation. For reference, you can optionally select larger virtual machines (including GPU machines) to support more intensive model training operations (deep learning, vision, etc.). Click <i>Next</i>.
+From the 'Virtual Machine' tab, leave the default values selected. The `Standard_DS3_v2` VM will work well for the upcoming training operation. For reference, you can optionally select larger virtual machines (including GPU machines) to support more intensive model training operations (deep learning, vision, etc.). Click <i>Next</i>.
 
 ![Virtual Machines](doc_img/23.png?raw=true "Virtual Machines")
 
@@ -219,11 +221,13 @@ After your run has completed it should reflect the best performing model under t
 
 ## Step 6 - Deploy your Trained Model to an Azure Container Instance
 
-Now we will deploy your best performing model to a real-time endpoint so that it can be consumed by other applications and services.
+Now we will deploy your best performing model to a real-time endpoint so that it can be consumed by other applications and services. Click the hyperlink to your best performing model.
+
+![Best Performing Model](doc_img/33b.png?raw=true "Best Performing Model")
 
 <u><b>IMPORTANT!</b> In order to deploy a Power BI-compatible endpoint the following steps are critical in your model deployment.</u>
 
-Click the hyper link to your best performing model and navigate to the 'Outputs + logs' tab. Under the `outputs` directory in the file explorer click the ellipsis (...) next to `outputs/conda_env_v_1_0_0.yml` and `outputs/scoring_file_v_1_0_0.py` to download both to your local machine. It is important to download the `scoring_file_v_1_0_0.py` version.
+From the overview of your best performing model. navigate to the 'Outputs + logs' tab. Under the `outputs` directory in the file explorer click the ellipsis (...) next to `outputs/conda_env_v_1_0_0.yml` and `outputs/scoring_file_v_1_0_0.py` to download both to your local machine. It is important to download the `scoring_file_v_1_0_0.py` version.
 
 ![Download Model Env and Scoring File](doc_img/34.png?raw=true "Download Model Env and Scoring File")
 
@@ -330,7 +334,7 @@ Your plot should appear similar to what is shown here with substantial density a
 
 ![Tooltips](doc_img/51.png?raw=true "Tooltips")
 
-Congratulations on finishing the workshop! Feel free to continue creating new visualizations in Power BI using predictions sourced from your deployed model. Be sure to delete all created resources at the conclusion of the workshop unless you want to use these as a reference in the future. You can delete resources by navigating to the Azure portal, selecting the Azure ML workspace and clicking delete.
+Congratulations on finishing the workshop🙏! Feel free to continue creating new visualizations in Power BI using predictions sourced from your deployed model. Be sure to delete all created resources at the conclusion of the workshop unless you want to use these as a reference in the future. You can delete resources by navigating to the Azure portal, selecting the Azure ML workspace and clicking delete.
 
 ![Delete AML Workspace](doc_img/52.png?raw=true "Delete AML Workspace")
 
