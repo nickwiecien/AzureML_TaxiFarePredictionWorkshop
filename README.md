@@ -24,7 +24,17 @@ With the data included in this repo, we aim to train and deploy a custom machine
 
 ## Getting Started
 
-The guided walk through below highlights how to provision a new Azure Machine Learning workspace, create necessary compute resources in the AML workspace, upload a training dataset, start an AutoML model training job, deploy the trained model to an endpoint, and then consume that model through a custom Power BI Dashboard.
+The guided walk through below highlights how to provision a new Azure Machine Learning workspace, create necessary compute resources in the AML workspace, upload a training dataset, start an AutoML model training job, deploy the trained model to an endpoint, and then consume that model through a custom Power BI report.
+
+- [Step 1 - Download and Extract GitHub Repository to your Local Machine](#step-1---download-and-extract-github-repository-to-your-local-machine)
+ - [Step 2 - Provision an Azure Machine Learning Workspace](#step-2---provision-an-azure-machine-learning-workspace)
+ - [Step 3 - Register Taxi Training Data as Azure Machine Learning Dataset](#step-3---register-taxi-training-data-as-azure-machine-learning-dataset)
+ - [Step 4 - Create an Azure Machine Learning Compute Cluster to Support Model Training](#step-4---create-an-azure-machine-learning-compute-cluster-to-support-model-training)
+ - [Step 5 - Create and Run an AutoML Job to Train a Fare Prediction Model](#step-5---create-and-run-an-automl-job-to-train-a-fare-prediction-model)
+ - [Step 6 - Deploy your Trained Model to an Azure Container Instance](#step-6---deploy-your-trained-model-to-an-azure-container-instance)
+ - [Step 7 - Load PBIX Template in Power BI Desktop](#step-7---load-pbix-template-in-power-bi-desktop)
+ - [Step 8 - Connect Deployed Model into Power BI Report](#step-8---connect-deployed-model-into-power-bi-report)
+ - [Next Steps and References](#next-steps-and-references)
 
 ### Step 1 - Download and Extract GitHub Repository to your Local Machine
 
@@ -211,3 +221,14 @@ Deploy to web service and verify prediction through testing portal once complete
 
 ### Step 8 - Connect Deployed Model into Power BI Report
 
+## Next Steps and References
+
+We hope you enjoyed this workshop! If you are interested in using Azure Machine Learning for future model development activities, the resources linked below are a great place to get started on learning what else can be done with AML!
+
+* [Microsoft Learn (Self-Guided Learning Path) - Build and Operate Machine Learning Solutions with Azure Machine Learning](https://docs.microsoft.com/en-us/learn/paths/build-ai-solutions-with-azure-ml-service/)
+
+* [Microsoft Documentation - What is Azure Machine Learning?](https://docs.microsoft.com/EN-US/azure/machine-learning/overview-what-is-azure-machine-learning)
+
+* [Azure Machine Learning Examples (GitHub)](https://github.com/Azure/azureml-examples)
+
+* [Azure Machine Learning Data Scientist Associate Certification (DP-100)](https://docs.microsoft.com/en-us/learn/certifications/azure-data-scientist/)
