@@ -253,22 +253,20 @@ You can monitor your deployment by clicking on the 'Endpoints' tab on the left r
 You can test your endpoint by navigating to the <i>Test</i> tab. Select the <i>JSON editor</i> option and enter the JSON below then click <i>Test</i>. Select 'raw' under the Test result panel. <b>Note:</b> Your specific results will likely be slightly different.
 ```
 {
-  "Inputs": {
-    "data": [
-      {
-        "DROPOFF_LOCATION_CODE": "Loc_113",
-        "PICKUP_DAY": 6,
-        "PICKUP_HOUR": 16,
-        "PICKUP_LOCATION_CODE": "Loc_79",
-        "PICKUP_MINUTE": 4,
-        "PICKUP_MONTH": 4,
-        "PICKUP_YEAR": 2019,
-        "RATE_CODE": "GroupRide",
-        "TRIP_DISTANCE": 0.57,
-        "VENDOR_ID": "VeriFone Inc."
-      }
-    ]
-  }
+  "data": [
+    {
+      "DROPOFF_LOCATION_CODE": "Loc_113",
+      "PICKUP_DAY": 6,
+      "PICKUP_HOUR": 16,
+      "PICKUP_LOCATION_CODE": "Loc_79",
+      "PICKUP_MINUTE": 4,
+      "PICKUP_MONTH": 4,
+      "PICKUP_YEAR": 2019,
+      "RATE_CODE": "GroupRide",
+      "TRIP_DISTANCE": 0.57,
+      "VENDOR_ID": "VeriFone Inc."
+    }
+  ]
 }
 ```
 
@@ -281,6 +279,8 @@ If you do not have Power BI Desktop installed, [download the PBI Desktop Install
 Launch Power BI Desktop from the start menu.
 
 ![Launch Power BI](doc_img/39.png?raw=true "Launch Power BI")
+
+
 
 ## Step 8 - Connect Deployed Model into Power BI Report
 
