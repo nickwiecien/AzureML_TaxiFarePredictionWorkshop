@@ -280,7 +280,7 @@ If you do not have Power BI Desktop installed, [download the PBI Desktop Install
 
 Launch Power BI Desktop from the start menu.
 
-
+![Launch Power BI](doc_img/39.png?raw=true "Launch Power BI")
 
 ## Step 8 - Connect Deployed Model into Power BI Report
 
