@@ -1,7 +1,7 @@
 # Azure Machine Learning - NYC Taxi Cab Fare Prediction Workshop
 
 ## Overview
-This workshop showcases how to take data from a CSV, train a custom model using AutoML inside of Azure Machine Learning, deploy that model to a real-time endpoint, and consume the predictions through a custom Power BI report. 
+This workshop showcases how to take data from a CSV, train a custom model using AutoML inside of Azure Machine Learning, deploy that model to a real-time endpoint, and consume the predictions through a custom Power BI report. After completing this workshop, you will be prepared to train, deploy, and consume custom ML models built on top of your own data without having to write any code whatsoever!
 
 ![NYC Taxi Cab Fare Prediction Workshop](doc_img/yellow_taxi.jpg?raw=true "NYC Taxi Cab Fare Prediction Workshop")
 
@@ -68,7 +68,7 @@ From the Azure ML resource creation form, select your target subscription and re
 |------------|-------|
 |Subscription | Target Azure subscription used for the workshop|
 |Resource group | Target Azure resource group used for the workshop - contained within the target subscription|
-|Workspace name | Provide a name that uses the following pattern '<YOUR FIRST NAME>-<YOUR LAST NAME>-aml-ws' |
+|Workspace name | Provide a name that uses the following pattern 'FIRSTNAME-LASTNAME-aml-ws' |
 |Region | Recommended:  East US 2|
 |Storage Account| Accept autofilled value |
 |Key Vault | Accept autofilled value |
@@ -95,11 +95,68 @@ A new browser tab containing the Azure Machine Learning Studio UI should open.
 
 ### Step 3 - Register Taxi Training Data as Azure Machine Learning Dataset
 
-Upload CSV into workspace
+Inside the AML studio, we need to upload our taxi training data before kicking off a model training job. From the Azure Machine Learning Studio, click <i>Datasets</i> in the left rail.
+
+![Datasets](doc_img/14.png?raw=true "Datasets")
+
+Once inside the Datasets tab, click the <i>Create dataset</i> dropdown in the center of the page and select <i>From local files</i>.
+
+![Dataset from Local Files](doc_img/15.png?raw=true "Dataset from Local Files")
+
+Under 'Basic Info' enter `Taxi_Training_Data` as your dataset name and leave the dataset type as `Tabular`. After entering these fields click <i>Next</i>.
+
+| Field | Value |
+|-------|-------|
+|Name | Taxi_Training_Data |
+|Dataset type | Tabular |
+|Description | New York City yellow taxi fares data |
+
+![Dataset Basic Info](doc_img/16.png?raw=true "Dataset Basic Info")
+
+Under 'Datastore and file selection' leave the default datastore selection as `workspaceblobstore`. Click the <i>Upload</i> dropdown and navigate to the `taxi_data/training_data.csv` file you downloaded to your local machine earlier. Select this file and click <i>Open</i>. Leave 'Skip data validation' unchecked and click <i>Next</i>. This will trigger your file upload.
+
+![Datastore and File Selection](doc_img/17.png?raw=true "Datastore and File Selection")
+
+From the 'Settings and preview' tab, leave all of the default options selected. Your screen should appear as what is shown below. After confirming your data has been uploaded as expected, click  <i>Next</i>.
+
+![Settings and Preview](doc_img/18.png?raw=true "Settings and Preview")
+
+Under the 'Schema' tab all of the columns in the dataset will be auto-type detected. Leave all of the columns on and default settings selected. Click <i>Next</i>.
+
+![Schema](doc_img/19.png?raw=true "Schema")
+
+Finally, from the 'Confirm details' tab, click <i>Create</i>. Your dataset is now registered (read, saved and versioned) and can be consumed from the AML workspace and used to support model training.
+
+![Confirm Details](doc_img/20.png?raw=true "Confirm Details")
 
 ### Step 4 - Create an Azure Machine Learning Compute Cluster to Support Model Training
 
-Create single node cluster
+Now, to support our AutoML training job to be launched in the next step of the workshop, we need to create compute resources to handle the training activities. First, navigate to the <i>Compute</i> tab along the left rail.
+
+![Compute](doc_img/21.png?raw=true "Compute")
+
+From the Compute panel select the <i>Compute clusters</i> tab, and then click the <i>+ New</i> button.
+
+![Compute Clusters](doc_img/22.png?raw=true "Compute Clusters")
+
+From the 'Virtual Machine' tab, leave the default values selected. The `Standard_DS3_v2` sku VM will work well for the forthcoming training operation. For reference, you can optionally select larger virtual machines (including GPU machines) to support more intensive model training operations (deep learning, vision, etc.). Click <i>Next</i>.
+
+![Virtual Machines](doc_img/23.png?raw=true "Virtual Machines")
+
+In  the 'Advanced Settings' panel, provide a name for your compute cluster (recommend using something containing your initials), and leave the minimum node count, maximum node count, and idle seconds before scale down settings to their defaults. Leave 'Enable SSH access' unchecked and do not modify the Advanced settings. After entering all fields, click <i>Create</i>.
+
+| Field | Value |
+|-------|-------|
+|Compute name | YOURINITIALS-compute |
+|Minimum number of nodes | 0 |
+| Maximum number of nodes | 1 |
+|Idle seconds before scale down | 120 |
+
+![Compute Cluster Advanced Settings](doc_img/24.png?raw=true "Compute Cluster Advanced Settings")
+
+Your compute cluster will automatically begin provisioning and once successful show indicate 'Succeeded (0 nodes)'. <b>Note:</b> Your nodes will automatically spin up when jobs are submitted, and will spin down following 120 seconds of inactivity, and you are only billed for consumption while these nodes are active. Keeping the 'Idle seconds before scale down' setting low on your compute cluster will help keep training costs low.
+
+![Provisioned Compute Cluster](doc_img/25.png?raw=true "Provisioned Compute Cluster")
 
 ### Step 5 - Create and Run an AutoML Job to Train a Fare Prediction Model
 
