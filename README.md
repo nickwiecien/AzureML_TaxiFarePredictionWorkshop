@@ -32,7 +32,7 @@ The guided walk through below highlights how to provision a new Azure Machine Le
  - [Step 4 - Create an Azure Machine Learning Compute Cluster to Support Model Training](#step-4---create-an-azure-machine-learning-compute-cluster-to-support-model-training)
  - [Step 5 - Create and Run an AutoML Job to Train a Fare Prediction Model](#step-5---create-and-run-an-automl-job-to-train-a-fare-prediction-model)
  - [Step 6 - Deploy your Trained Model to an Azure Container Instance](#step-6---deploy-your-trained-model-to-an-azure-container-instance)
- - [Step 7 - Load PBIX Template in Power BI Desktop](#step-7---create-new-report-in-power-bi-desktop)
+ - [Step 7 - Create New Report in Power BI Desktop](#step-7---create-new-report-in-power-bi-desktop)
  - [Step 8 - Connect Deployed Model into Power BI Report](#step-8---connect-deployed-model-into-power-bi-report)
  - [Next Steps and References](#next-steps-and-references)
 
