@@ -147,20 +147,61 @@ In  the 'Advanced Settings' panel, provide a name for your compute cluster (reco
 
 | Field | Value |
 |-------|-------|
-|Compute name | YOURINITIALS-compute |
+|Compute name | YOURINITIALS-training |
 |Minimum number of nodes | 0 |
 | Maximum number of nodes | 1 |
 |Idle seconds before scale down | 120 |
 
 ![Compute Cluster Advanced Settings](doc_img/24.png?raw=true "Compute Cluster Advanced Settings")
 
-Your compute cluster will automatically begin provisioning and once successful show indicate 'Succeeded (0 nodes)'. <b>Note:</b> Your nodes will automatically spin up when jobs are submitted, and will spin down following 120 seconds of inactivity, and you are only billed for consumption while these nodes are active. Keeping the 'Idle seconds before scale down' setting low on your compute cluster will help keep training costs low.
+Your compute cluster will automatically begin provisioning and once successful show indicate 'Succeeded (0 nodes)'. 
+
+<b>Note:</b> Your nodes will automatically spin up when jobs are submitted, and will spin down following 120 seconds of inactivity, and you are only billed for consumption while these nodes are active. Keeping the 'Idle seconds before scale down' setting low on your compute cluster will help keep training costs low.
 
 ![Provisioned Compute Cluster](doc_img/25.png?raw=true "Provisioned Compute Cluster")
 
 ### Step 5 - Create and Run an AutoML Job to Train a Fare Prediction Model
 
-Submit AutoML job with appropriate target column - timeout limit of 30 minutes
+After registering your taxi cab training dataset and provisioning your training compute resources, click the 'Automated ML' option from the left rail.
+
+![Automated ML](doc_img/26.png?raw=true "Automated ML")
+
+From the Automated ML tab, click <i>+ New Automated ML run</i>.
+
+<b>Note:</b> More details about how AutoML works under the hood, and what applications it is well-suited towards can be found under the 'Concept: What is Automated ML?' tab.
+
+![New Automated ML Run](doc_img/27.png?raw=true "New Automated ML Run")
+
+When prompted to select a dataset, choose the `Taxi_Training_Data` dataset that you previously registered in the AML workspace, then click <i>Next</i>
+
+![Select AutoML Dataset](doc_img/28.png?raw=true "Select AutoML Dataset")
+
+Under the 'Configure Run' tab, populate the fields according to the table below, the click <i>Next</i>.
+
+| Field | Value |
+|-------|-------|
+|New experiment name | Taxi_Fare_Prediction|
+|Target column | TOTAL_AMOUNT (Decimal) |
+|Select compute type | Compute cluster |
+|Select Azure ML compute cluster | <i>Select the compute cluster you provisioned in step 4. There should be one available option here. </i>|
+
+![Configure AutoML Run](doc_img/29.png?raw=true "Configure AutoML Run")
+
+From the 'Select Task and Settings' panel, select <i>Regression</i>, then click the <i>View additional configuration settings</i> button.
+
+![AutoML Task and Settings](doc_img/30.png?raw=true "AutoML Task and Settings")
+
+Under the 'Additional configurations' tab, expand the 'Exit criterion' tab and change <i>Training job time (hours)</i> setting to `0.5`. Once updated click <i>Save</i>. From the 'Select task and settings' menu, click <i>Next</i>.
+
+<b>Note:</b> For the purposes of this workshop we want our model training to complete in a timely manner. For other applications, extended training times can often yield higher performing models.
+
+![AutoML Additional Configuration](doc_img/31.png?raw=true "AutoML Additional Configuration")
+
+Under the '[Optional] Validate and Test' menu, leave the defaults selected and click <i>Finish</i>.
+
+![Finalize AutoML Settings](doc_img/32.png?raw=true "Finalize AutoML Settings")
+
+Your AutoML training job should start immediately. Now would be a great time to go grab a coffee as this next part will take ~20-30 minutes ☕🕒. 
 
 ### Step 6 - Deploy your Trained Model to an Azure Container Instance
 
