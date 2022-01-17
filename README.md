@@ -32,11 +32,11 @@ The guided walk through below highlights how to provision a new Azure Machine Le
  - [Step 4 - Create an Azure Machine Learning Compute Cluster to Support Model Training](#step-4---create-an-azure-machine-learning-compute-cluster-to-support-model-training)
  - [Step 5 - Create and Run an AutoML Job to Train a Fare Prediction Model](#step-5---create-and-run-an-automl-job-to-train-a-fare-prediction-model)
  - [Step 6 - Deploy your Trained Model to an Azure Container Instance](#step-6---deploy-your-trained-model-to-an-azure-container-instance)
- - [Step 7 - Load PBIX Template in Power BI Desktop](#step-7---load-pbix-template-in-power-bi-desktop)
+ - [Step 7 - Load PBIX Template in Power BI Desktop](#step-7---create-new-report-in-power-bi-desktop)
  - [Step 8 - Connect Deployed Model into Power BI Report](#step-8---connect-deployed-model-into-power-bi-report)
  - [Next Steps and References](#next-steps-and-references)
 
-### Step 1 - Download and Extract GitHub Repository to your Local Machine
+## Step 1 - Download and Extract GitHub Repository to your Local Machine
 
 First, download this repository with the underlying data for training and validation to your local machine. Click on the <i><> Code</i> dropdown link and select 'Download ZIP'.
 
@@ -50,7 +50,7 @@ Navigate to the extracted directory and click into the `taxi_data` directory. Yo
 
 ![Test and Train Taxi Data](doc_img/03.png?raw=true "Test and Train Taxi Data")
 
-### Step 2 - Provision an Azure Machine Learning Workspace
+## Step 2 - Provision an Azure Machine Learning Workspace
  
 Sign in to the (Azure Portal)[https://ms.portal.azure.com] and navigate to your target resource group for the workshop exercise. From the home page you can type <i>Resource groups</i> into the top search bar and select the associated option under the services menu.
 
@@ -103,7 +103,7 @@ A new browser tab containing the Azure Machine Learning Studio UI should open.
 
 ![Azure Machine Learning Studio](doc_img/13.png?raw=true "Azure Machine Learning Studio")
 
-### Step 3 - Register Taxi Training Data as Azure Machine Learning Dataset
+## Step 3 - Register Taxi Training Data as Azure Machine Learning Dataset
 
 Inside the AML studio, we need to upload our taxi training data before kicking off a model training job. From the Azure Machine Learning Studio, click <i>Datasets</i> in the left rail.
 
@@ -139,7 +139,7 @@ Finally, from the 'Confirm details' tab, click <i>Create</i>. Your dataset is no
 
 ![Confirm Details](doc_img/20.png?raw=true "Confirm Details")
 
-### Step 4 - Create an Azure Machine Learning Compute Cluster to Support Model Training
+## Step 4 - Create an Azure Machine Learning Compute Cluster to Support Model Training
 
 Now, to support our AutoML training job to be launched in the next step of the workshop, we need to create compute resources to handle the training activities. First, navigate to the <i>Compute</i> tab along the left rail.
 
@@ -170,7 +170,7 @@ Your compute cluster will automatically begin provisioning and once successful s
 
 ![Provisioned Compute Cluster](doc_img/25.png?raw=true "Provisioned Compute Cluster")
 
-### Step 5 - Create and Run an AutoML Job to Train a Fare Prediction Model
+## Step 5 - Create and Run an AutoML Job to Train a Fare Prediction Model
 
 After registering your taxi cab training dataset and provisioning your training compute resources, click the 'Automated ML' option from the left rail.
 
@@ -221,7 +221,7 @@ After your run has completed it should reflect the best performing model under t
 
 Now we will deploy your best performing model to a real-time endpoint so that it can be consumed by other applications and services.
 
-<b>IMPORTANT!</b> In order to deploy a Power BI-compatible endpoint the following steps are critical in your model deployment.
+<u><b>IMPORTANT!</b> In order to deploy a Power BI-compatible endpoint the following steps are critical in your model deployment.</u>
 
 Click the hyper link to your best performing model and navigate to the 'Outputs + logs' tab. Under the `outputs` directory in the file explorer click the ellipsis (...) next to `outputs/conda_env_v_1_0_0.yml` and `outputs/scoring_file_v_1_0_0.py` to download both to your local machine. It is important to download the `scoring_file_v_1_0_0.py` version.
 
@@ -244,9 +244,37 @@ Populate the 'Deploy a Model' tab with the information in the table below. Note 
 
 ![Deploy a Model](doc_img/36.png?raw=true "Deploy a Model")
 
-Your model endpoint deployment should begin automatically and this process can take a few minutes (~10) to complete.
+Your model endpoint deployment should begin automatically and this process can take a few minutes (~10-15) to complete. If you do not already have Power BI Desktop installed, move ahead to Step 7 to complete the installation.
 
-### Step 7 - Load PBIX Template in Power BI Desktop
+You can monitor your deployment by clicking on the 'Endpoints' tab on the left rail, and clicking into your <i>fare-prediction-deployment</i> endpoint. Once complete, your Deployment state should indicate 'Healthy'.
+
+![Successful Deployment](doc_img/37.png?raw=true "Sucessful Deployment")
+
+You can test your endpoint by navigating to the <i>Test</i> tab. Select the <i>JSON editor</i> option and enter the JSON below then click <i>Test</i>. Select 'raw' under the Test result panel. <b>Note:</b> Your specific results will likely be slightly different.
+```
+{
+  "Inputs": {
+    "data": [
+      {
+        "DROPOFF_LOCATION_CODE": "Loc_113",
+        "PICKUP_DAY": 6,
+        "PICKUP_HOUR": 16,
+        "PICKUP_LOCATION_CODE": "Loc_79",
+        "PICKUP_MINUTE": 4,
+        "PICKUP_MONTH": 4,
+        "PICKUP_YEAR": 2019,
+        "RATE_CODE": "GroupRide",
+        "TRIP_DISTANCE": 0.57,
+        "VENDOR_ID": "VeriFone Inc."
+      }
+    ]
+  }
+}
+```
+
+![Model Test](doc_img/38.png?raw=true "Model Test")
+
+## Step 7 - Create New Report in Power BI Desktop
 
 If you do not have Power BI Desktop installed, [download the PBI Desktop Installer from the Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=58494) and install on your local machine.
 
@@ -254,7 +282,7 @@ Launch Power BI Desktop from the start menu.
 
 
 
-### Step 8 - Connect Deployed Model into Power BI Report
+## Step 8 - Connect Deployed Model into Power BI Report
 
 ## Next Steps and References
 
