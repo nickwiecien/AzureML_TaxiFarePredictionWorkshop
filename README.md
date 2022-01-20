@@ -141,9 +141,10 @@ Finally, from the 'Confirm details' tab, click <i>Create</i>. Your dataset is no
 
 ![Confirm Details](doc_img/20.png?raw=true "Confirm Details")
 
-<b>Extra Credit:</b> If you finish the workshop ahead of time, try registering an existing Azure storage account as a datastore in your AML workspace, and creating a dataset from an existing file. Using AML, you can easily connect different storage services across Azure and package that data for tasks in ML workflows.
+<b>Extra Credit:</b> 🏆 If you finish the workshop ahead of time, try registering an existing Azure storage account as a datastore in your AML workspace, and creating a dataset from an existing file. Using AML, you can easily connect different storage services across Azure and package that data for tasks in ML workflows.
 
 [Connecting Azure Machine Learning to Different Storage Services](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-connect-data-ui?tabs=credential)
+
 [Where to find Keys in Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage?tabs=azure-portal)
 
 ## Step 4 - Create an Azure Machine Learning Compute Cluster to Support Model Training
